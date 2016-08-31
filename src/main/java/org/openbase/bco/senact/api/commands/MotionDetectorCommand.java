@@ -25,7 +25,6 @@ package org.openbase.bco.senact.api.commands;
 
 import java.util.Map;
 import org.openbase.jul.exception.NotAvailableException;
-import org.slf4j.Logger;
 
 /**
  *
