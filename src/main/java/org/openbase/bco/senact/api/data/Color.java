@@ -163,12 +163,6 @@ public class Color {
 	 * number. The floor of this number is subtracted from it to create a
 	 * fraction between 0 and 1. This fractional number is then multiplied by
 	 * 360 to produce the hue angle in the HSB color model.
-	 * <p>
-	 * The integer that is returned by <code>HSBtoRGB</code> encodes the value
-	 * of a color in bits 0-23 of an integer value that is the same format used
-	 * by the method {@link #getRGB() <code>getRGB</code>}. This integer can be
-	 * supplied as an argument to the <code>Color</code> constructor that takes
-	 * a single integer argument.
 	 *
 	 * @param hue the hue component of the color
 	 * @param saturation the saturation of the color
