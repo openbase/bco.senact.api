@@ -23,13 +23,13 @@ package org.openbase.bco.senact.api.commands;
  */
 
 
-import org.openbase.bco.senact.api.SenactInstanceInterface;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import org.openbase.jul.exception.CouldNotPerformException;
 import org.openbase.jul.exception.NotAvailableException;
 import org.slf4j.LoggerFactory;
+import org.openbase.bco.senact.api.SenactInstance;
 
 
 /**
@@ -39,10 +39,10 @@ import org.slf4j.LoggerFactory;
 public abstract class AbstractSenactCommand {
 
     protected static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(AbstractSenactCommand.class);
-	protected SenactInstanceInterface senact;
+	protected SenactInstance senact;
 	
 	
-	public void setSenact(SenactInstanceInterface senact) {
+	public void setSenact(SenactInstance senact) {
 		this.senact = senact;
 	}
 

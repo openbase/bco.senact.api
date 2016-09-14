@@ -25,7 +25,7 @@ package org.openbase.bco.senact.api.data;
 /**
  * Color Data Object. Platform independent data type for color representation.
  *
- * @author divine
+ * @author <a href="mailto:divine@openbase.org">Divine Threepwood</a>
  */
 public class Color {
 

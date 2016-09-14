@@ -29,7 +29,7 @@ import org.openbase.bco.senact.api.commands.MotionDetectorCommand;
  *
  * @author <a href="mailto:divine@openbase.org">Divine Threepwood</a>
  */
-public interface SenactInstanceInterface {
+public interface SenactInstance {
 	public void setSenactClientConnection(SenactClientConnection clientConnection);
 	public void setLightIntensity(int intensity);
 	public void setMotionState(MotionDetectorCommand.MotionState motionState);

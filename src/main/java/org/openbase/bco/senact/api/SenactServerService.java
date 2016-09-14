@@ -46,7 +46,7 @@ public class SenactServerService extends Thread {
 
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(SenactServerService.class);
     
-	private SenactInstanceInterface senact;
+	private SenactInstance senact;
 	private PropertyChangeSupport change;
 	private final TreeMap<Integer, SenactClientConnection> clientConnections;
 	private ServerSocket serverSocket;
@@ -63,7 +63,7 @@ public class SenactServerService extends Thread {
 		return clientConnections.lastEntry().getValue();
 	}
 	
-	public SenactServerService(SenactInstanceInterface senact) {
+	public SenactServerService(SenactInstance senact) {
 		super(SenactServerService.class.getSimpleName().toString());
 		this.online = false;
 		this.change = new PropertyChangeSupport(this);
@@ -132,7 +132,7 @@ public class SenactServerService extends Thread {
 		}
 	}
 	
-	public SenactInstanceInterface getSenact() {
+	public SenactInstance getSenact() {
 		return senact;
 	}
 
