@@ -43,9 +43,9 @@
     <packaging>jar</packaging>
     
     <scm>
-        <connection>scm:git:git@github.com/openbase/bco.senact.api.git</connection>
-        <developerConnection>scm:git:git@github.com/openbase/bco.senact.api.git</developerConnection>
-        <url>git@github.com/openbase/bco.senact.api.git</url>
+        <connection>scm:git:https://github.com/openbase/bco.senact.api.git</connection>
+        <developerConnection>scm:git:https://github.com/openbase/bco.senact.api.git</developerConnection>
+        <url>https://github.com/openbase/bco.senact.api.git</url>
     </scm>
 
     <build>
@@ -122,9 +122,19 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>license-maven-plugin</artifactId>
-                <version>1.9</version>
+                <version>1.10</version>
                 <configuration>
                     <verbose>false</verbose>
+                    <licenseName>gpl_v3</licenseName>
+                    <failOnMissingHeader>true</failOnMissingHeader>
+                    <failOnNotUptodateHeader>true</failOnNotUptodateHeader>
+                    <canUpdateCopyright>true</canUpdateCopyright>
+                    <canUpdateDescription>true</canUpdateDescription>
+                    <canUpdateLicense>true</canUpdateLicense>
+                    <roots>
+                        <root>src/main/java</root>
+                        <root>src/test</root>
+                    </roots>
                 </configuration>
                 <executions>
                     <execution>
@@ -133,13 +143,6 @@
                             <goal>update-file-header</goal>
                         </goals>
                         <phase>process-sources</phase>
-                        <configuration>
-                            <licenseName>gpl_v3</licenseName>
-                            <roots>
-                                <root>src/main/java</root>
-                                <root>src/test</root>
-                            </roots>
-                        </configuration>
                     </execution>
                     <execution>
                         <id>download-licenses</id>
@@ -243,8 +246,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <target.java.version>1.8</target.java.version>
         <source.java.version>1.8</source.java.version>
-        <dependency.jul.version>1.1-SNAPSHOT</dependency.jul.version>
-        <dependency.bco.registry.version>1.1-SNAPSHOT</dependency.bco.registry.version>
+        <dependency.jul.version>1.2-SNAPSHOT</dependency.jul.version>
+        <dependency.bco.registry.version>1.2-SNAPSHOT</dependency.bco.registry.version>
     </properties>
 
     <dependencies>
