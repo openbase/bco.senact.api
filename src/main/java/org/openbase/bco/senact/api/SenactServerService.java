@@ -91,8 +91,8 @@ public class SenactServerService extends Thread {
 				serverSocket = new ServerSocket(SERVER_PORT);
 				setOnline(true);
 
-			} catch (IOException e) {
-				LOGGER.info("Couldn't create server socket. " + e.getMessage() + " Try again in " + RECONNECTION_TIME / 1000 + " secunds.");
+			} catch (IOException ex) {
+				LOGGER.info("Couldn't create server socket. " + ex.getMessage() + " Try again in " + RECONNECTION_TIME / 1000 + " secunds.");
 				setOnline(false);
 				try {
 					Thread.sleep(RECONNECTION_TIME);

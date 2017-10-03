@@ -165,8 +165,8 @@ public class SenactClientConnection implements Runnable {
 		if (in != null) {
 			try {
 				in.close();
-			} catch (IOException e) {
-				LOGGER.debug("Could not close input stream!", e);
+			} catch (IOException ex) {
+				LOGGER.debug("Could not close input stream!", ex);
 			}
 			in = null;
 		}
@@ -174,16 +174,16 @@ public class SenactClientConnection implements Runnable {
 		if (out != null) {
 			try {
 				out.close();
-			} catch (IOException e) {
-				LOGGER.debug("Could not close output stream!", e);
+			} catch (IOException ex) {
+				LOGGER.debug("Could not close output stream!", ex);
 			}
 			out = null;
 		}
 		if (socket != null) {
 			try {
 				socket.close();
-			} catch (IOException e) {
-				LOGGER.debug("Could not close socket!", e);
+			} catch (IOException ex) {
+				LOGGER.debug("Could not close socket!", ex);
 			}
 		}
 	}
@@ -211,23 +211,23 @@ public class SenactClientConnection implements Runnable {
 //					lastCommunication = System.currentTimeMillis();
 //					timeOut.cancel();
 //					LOGGER.debug("New incomming command: " + newCommand);
-				} catch (NullPointerException e) {
-					LOGGER.warn("Connection lost!", e);
+				} catch (NullPointerException ex) {
+					LOGGER.warn("Connection lost!", ex);
 //					notifyConnectionError("Connection lost!");
 					disconnect();
 					continue;
-//				} catch (JsonMappingException e) {
-//					LOGGER.warn("Connection closed unexpected!", e);
+//				} catch (JsonMappingException ex) {
+//					LOGGER.warn("Connection closed unexpected!", ex);
 //					notifyConnectionError("Connection broken!");
 //					disconnect();
 //					continue;
-//				} catch (JsonParseException e) {
-//					LOGGER.warn("Connection closed unexpected!", e);
+//				} catch (JsonParseException ex) {
+//					LOGGER.warn("Connection closed unexpected!", ex);
 //					notifyConnectionError("Programm version may out of date!");
 //					disconnect();
 //					continue;
-//				} catch (JsonProcessingException e) {
-//					LOGGER.warn("Connection closed unexpected!", e);
+//				} catch (JsonProcessingException ex) {
+//					LOGGER.warn("Connection closed unexpected!", ex);
 //					notifyConnectionError("Connection broken!");
 //					disconnect();
 //					continue;
