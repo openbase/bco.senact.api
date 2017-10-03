@@ -3,7 +3,7 @@
 
     <groupId>org.openbase.bco</groupId>
     <artifactId>senact.api</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>1.5-SNAPSHOT</version>
     
     <name>BCO Senact API</name>
     <inceptionYear>2013</inceptionYear>
