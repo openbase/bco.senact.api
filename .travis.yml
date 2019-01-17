@@ -1,24 +1,34 @@
 language: java
 
+dist: xenial
+
 branches:
   except:
       #- /^(?i:feature)-.*$/
       #- /^(?i:release)-.*$/
 
 jdk:
-  - oraclejdk8
+  - openjdk8
+  - openjdk11
+  - openjdk-ea
 
 install:
-    - mvn --settings .travis/settings.xml clean install -Psonatype -DskipTests=true -Dmaven.javadoc.skip=true -B -U -V
+  - mvn --settings .travis/settings.xml install -DskipTests=true -Dmaven.javadoc.skip=true -B -U -V -q
 
 before_install:
   - echo $GPG_SECRET_KEYS | base64 --decode | $GPG_EXECUTABLE --import
   - echo $GPG_OWNERTRUST | base64 --decode | $GPG_EXECUTABLE --import-ownertrust
 
 notifications:
-    slack: openbase-org:vGz7LO4CvGoGMneYkEm3ON7E
-    on_failure: change
-    on_success: change	
+    email:
+        on_success: never
+        on_failure: never
+    slack:
+        on_failure: change
+        on_success: change
+        rooms:
+            - openbase-org:vGz7LO4CvGoGMneYkEm3ON7E#build
+            #- openbase-org:vGz7LO4CvGoGMneYkEm3ON7E#senact
 
 deploy:
   - provider: script
@@ -26,10 +36,10 @@ deploy:
     on:
         repo: openbase/bco.senact.api
         branch: master
-        jdk: oraclejdk8
+        jdk: openjdk8
   - provider: script
     script: .travis/deploy.sh
     on:
         repo: openbase/bco.senact.api
         tags: true
-        jdk: oraclejdk8
+        jdk: openjdk8
