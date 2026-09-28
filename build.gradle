@@ -33,7 +33,6 @@ tasks.withType(JavaCompile).configureEach {
 
 dependencies {
     api 'org.openbase:jul.exception:3.7.4'
-    testImplementation 'junit:junit:4.13.1'
 }
 
 publishing {
