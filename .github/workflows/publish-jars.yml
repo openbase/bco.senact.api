@@ -1,0 +1,69 @@
+name: Publish
+
+on:
+  release:
+    types: [created]
+  push:
+    branches:
+      - dev
+
+permissions:
+  contents: read
+
+jobs:
+  publish-snapshot:
+    name: Publish Snapshot
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Validate Gradle wrapper
+        uses: gradle/actions/wrapper-validation@v6
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v6
+
+      - name: Publish snapshot to Maven Central
+        run: ./gradlew --no-daemon publishToSonatype
+        env:
+          ORG_GRADLE_PROJECT_OPENBASE_GPG_PRIVATE_KEY: ${{ secrets.OPENBASE_GPG_PRIVATE_KEY }}
+          ORG_GRADLE_PROJECT_OPENBASE_GPG_PRIVATE_KEY_PASSPHRASE: ${{ secrets.OPENBASE_GPG_PRIVATE_KEY_PASSPHRASE }}
+          ORG_GRADLE_PROJECT_MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          ORG_GRADLE_PROJECT_MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
+
+  publish-release:
+    name: Publish Release
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Validate Gradle wrapper
+        uses: gradle/actions/wrapper-validation@v6
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v6
+
+      - name: Publish and release to Maven Central
+        run: ./gradlew --no-daemon -PreleaseVersion="$RELEASE_VERSION" publishToSonatype closeAndReleaseSonatypeStagingRepository
+        env:
+          RELEASE_VERSION: ${{ github.event.release.tag_name }}
+          ORG_GRADLE_PROJECT_OPENBASE_GPG_PRIVATE_KEY: ${{ secrets.OPENBASE_GPG_PRIVATE_KEY }}
+          ORG_GRADLE_PROJECT_OPENBASE_GPG_PRIVATE_KEY_PASSPHRASE: ${{ secrets.OPENBASE_GPG_PRIVATE_KEY_PASSPHRASE }}
+          ORG_GRADLE_PROJECT_MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          ORG_GRADLE_PROJECT_MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
